@@ -9,7 +9,7 @@ else:
     print("siamo su un altro sistema")
     clear = "clear"
     date = """date +\"%Y%m%d\" """
-os.system(clear) 
+os.system(clear)
 query1 ="""SELECT Cod_Bottiglie, nome, P_vendita 
         from bottiglie order 
         by P_Vendita
@@ -51,14 +51,30 @@ if scelta == "1":
         print(format(error))
     for cod , nome, prezzo in cursor:
         print("Codice : {} , Nome : {}, Prezzo : {}€".format(cod,nome,prezzo))
+
+
 elif scelta == "2":
+    
     print("Inserisci I seguenti Dati:")
-    data=os
+    quantita = input("Numero bottiglie vendute: ")
+    print("Lista Bottiglie presenti nel databasse ...")
+    cursor.execute("Select Cod_bottiglie, nome from bottiglie where quantita <> 0")
+    
+    
+    #CORREGGERE IL DB METTENDO IL SINGOLARE
+    for codice, nome in cursor:
+        print("Codice: " + codice + " Nome: " + nome )
+    codice_in = input("inserisci il codice della bottiglia:")
+    #data  = os.system(date)
+    #while codice_in i
+
     try:
-        cursor.execute(query2,())
+        cursor.execute(query2,("20200531",quantita,codice_in))
+        
     except mariadb.Error as error:
         print(format(error))
-    
+    print("Vendita inserita correttamente!")
+
 elif scelta=="3":
     print("Code2")
 
