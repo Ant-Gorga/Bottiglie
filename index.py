@@ -1,5 +1,3 @@
-#stavo facendo il datetime
-#Struttura di dati iterabile probabilmente con le classi
 import mysql.connector as mariadb
 import platform
 import os
@@ -10,6 +8,31 @@ if platform.platform() =="Windows":
 else:
     print("siamo su un altro sistema")
     clear = "clear"
+
+class Found(Exception): pass #Eccezione creata per uscire dal ciclo annidiato
+
+
+class Bottiglia:
+    "Classe che rappresenta la tabella bottiglie nel database"
+    righe = 0
+    
+    def __init__(self,Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto):
+        self.Codice = Codice
+        self.Nome = Nome
+        self.Qauantita = Quantita 
+        self.P_acqusito = P_acqusito
+        self.P_vendita= P_vendita
+        self.Data_Acquisto = D_acquisto
+        Bottiglia.righe +=1 
+
+    def stampaBottiglia(self):
+        print("codice :" +self.Codice+ ", Nome:"+ self.Nome+", Qta: "+str(self.Qauantita) +", Prezzo:"+str(self.P_vendita)+"€")
+    
+    def controlloCodice(self,cod):
+        if cod == self.Codice:
+            return True
+
+
 
 os.system(clear)
 
@@ -32,11 +55,16 @@ try:
         print("esco dal programma . . .")
         exit()
     try:
-        mariadb_connection = mariadb.connect(user=utente,password=password,database=db)
+        mariadb_connection = mariadb.connect(user=utente,password=password,host=host,database=db)
         cursor = mariadb_connection.cursor()
     except NameError as error:
         print(format(error))
 
+    cursor.execute("SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acqusito from bottiglie order by P_Vendita")
+    
+    
+    for Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto in cursor:
+        Bottiglie[Codice]=Bottiglia(Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto)
     menu()
 
     scelta = input("Scelta : ")
@@ -45,15 +73,14 @@ try:
             cursor.execute(query1)
         except mariadb.Error as error:
             print(format(error))
-        for cod , nome, prezzo , quantita in cursor:
-            print("Codice : {} , Nome : {}, Prezzo : {}€, QTA:{}".format(cod,nome,prezzo,quantita))
-
+        for b in Bottiglie.values():
+            b.stampaBottiglia()
 
     elif scelta == "2":
         #semicompleto controllare e sistemare il codice :)
         print("Inserisci I seguenti Dati:")
 
-        print("Lista Bottiglie presenti nel databasse ...")
+        print("Lista Bottiglie disponibili alla vendita ...")
         cursor.execute("Select Cod_bottiglia, nome, quantita from bottiglie where quantita <> 0")
         for codice, nome, quantita in cursor:
             print("NOME :{}, CODICE :{}, QTA: {}".format(codice,nome,quantita))
@@ -61,16 +88,16 @@ try:
         
         codice_in = ""
         
-        while codice_in not in Cod_quantita.keys():
-            codice_in = input("inserisci il codice della bottiglia: . . ")
-        max_bottiglie = Cod_quantita[codice_in]
+        while codice_in not in Bottiglie.keys():
+            codice_in = input("inserisci il codice della bottiglia: . . . ")
+        max_bottiglie = Bottiglie[codice_in].Qauantita
         
         while True:
             quantita = int(input("Numero bottiglie vendute (max :"+str(max_bottiglie)+"): "))
             if quantita <= max_bottiglie and quantita > 0:
                 break
         oggi = datetime.date.today()
-        data = oggi.strftime("%Y%m%d")
+        data = oggi.strftime("%Y%m%d") #Formattazione data come piace a mysql
         try:
             cursor.execute(vendita,(data,quantita,codice_in))
             cursor.execute(vendita_2,(quantita,codice_in))
