@@ -50,6 +50,7 @@ while True:
         break
     except KeyError:
         print("Codice errato")
+i = int(input("Ciao:"))
 
 print("DISPONIBILITA ="+str(Bottiglie["80220718"].Qauantita))
 #implementare i controlli come funzioni nella classe

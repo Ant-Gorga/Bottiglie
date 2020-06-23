@@ -1,3 +1,6 @@
+# Quando si inserisce si deve fare il commit
+#Quando si legge non è necessario
+
 import mysql.connector as mariadb
 import platform
 import os
@@ -27,10 +30,7 @@ class Bottiglia:
 
     def stampaBottiglia(self):
         print("codice :" +self.Codice+ ", Nome:"+ self.Nome+", Qta: "+str(self.Qauantita) +", Prezzo:"+str(self.P_vendita)+"€")
-    
-    def controlloCodice(self,cod):
-        if cod == self.Codice:
-            return True
+
 
 
 
@@ -86,14 +86,19 @@ try:
             print("NOME :{}, CODICE :{}, QTA: {}".format(codice,nome,quantita))
             Cod_quantita[codice]=quantita
         
-        codice_in = ""
+        
         
         while codice_in not in Bottiglie.keys():
             codice_in = input("inserisci il codice della bottiglia: . . . ")
         max_bottiglie = Bottiglie[codice_in].Qauantita
         
         while True:
-            quantita = int(input("Numero bottiglie vendute (max :"+str(max_bottiglie)+"): "))
+            try:
+                quantita = int(input("Numero bottiglie vendute (max :"+str(max_bottiglie)+"): "))
+            except ValueError:
+                print("Errore, hai inserito un carattere non valido, inserisco 1 bottiglia")
+                quantita=1
+            
             if quantita <= max_bottiglie and quantita > 0:
                 break
         oggi = datetime.date.today()
@@ -108,9 +113,24 @@ try:
             print("Errore nell'inserimento della riga, controlla i tipi di dato o il codice della bottiglia")
 
     elif scelta=="3":
-        print("Inserisci il codice della bottiglia")
-
-
+        while codice_in not in Bottiglie.keys():
+            codice_in = input("inserisci il codice della bottiglia: . . . ")
+            try:
+                quantita = int(input("Numero delle bottiglie da inserire:..."))
+            except ValueError:
+                print("Errore, hai inserito un carattere non valido, inserisco 1 bottiglia")
+                quantita=1
+        try:
+            cursor.execute(inserimento,(quantita,codice_in))
+            cursor.commit()
+        except mariadb.Error as error:
+            print(format(error))
+            print("Errore nell'inserimento della riga, controlla i tipi di dato o il codice della bottiglia")
+            
+        
+    elif scelta =="4":
+        #quarto csaoù
+        print("Non so se implementarlo o meno")
     mariadb_connection.close()
 
 except KeyboardInterrupt:
