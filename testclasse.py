@@ -3,7 +3,7 @@ import mysql.connector as mariadb
 mariadb_connection = mariadb.connect(user=utente,password=password,database=db)
 cursor = mariadb_connection.cursor()
 class Found(Exception): pass
-
+var= 0
 
 class Bottiglia:
     "Classe che rappresenta la tabella bottiglie nel database"
@@ -43,14 +43,17 @@ def codice():
                     raise Found
     except Found:
         print("Controllo effettuato")
-while True:
-    try:
-        codice=input("inserisci un codice corretto")
-        print(Bottiglie[codice].Nome)
-        break
-    except KeyError:
-        print("Codice errato")
-i = int(input("Ciao:"))
+# while True:
+#     try:
+#         codice=input("inserisci un codice corretto")
+#         print(Bottiglie[codice].Nome)
+#         break
+#     except KeyError:
+#         print("Codice errato")
 
-print("DISPONIBILITA ="+str(Bottiglie["80220718"].Qauantita))
-#implementare i controlli come funzioni nella classe
+def restbottiglie():
+    cursor.execute("SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acqusito from bottiglie order by P_Vendita")
+    Bottiglie = {}
+    for Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto in cursor:
+        Bottiglie[Codice]=Bottiglia(Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto)
+    return Bottiglie
