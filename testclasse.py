@@ -1,6 +1,6 @@
 from Var import *
 import mysql.connector as mariadb
-mariadb_connection = mariadb.connect(user=utente,password=password,database=db)
+mariadb_connection = mariadb.connect(user=utente,password=password,database=db,host=host)
 cursor = mariadb_connection.cursor()
 class Found(Exception): pass
 var= 0

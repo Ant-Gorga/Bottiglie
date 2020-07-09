@@ -15,7 +15,7 @@ inserimento="""updat bottiglie set quantita=quantita+%s where Cod_bottiglia=%s
 utente = "antonio"
 db="test_bottiglie"
 password="antonio"
-host="localhost"
+host="192.168.1.100"
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}
