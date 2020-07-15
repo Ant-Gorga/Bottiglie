@@ -5,7 +5,6 @@ root = Tk()
 root.title("Bottiglie")
 def bottone_click():
     testo= Label(root,text="")
-    
     testo = Label(root,text=e.get())
     testo.grid(row=3,column=3)
 

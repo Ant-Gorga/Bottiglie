@@ -17,3 +17,5 @@ mariadb_connection = mariadb.connect(user=utente,password=password,database=db,h
 ```
 
 Replicare le possibilità del programma cui nel gui.
+
+Vedere Tutorial per nuovo schermo Per inserire i dati
