@@ -16,4 +16,4 @@ Aggiornare il collegamento al database sostituendolo con
 mariadb_connection = mariadb.connect(user=utente,password=password,database=db,host=host)
 ```
 
-Capire perchè i dati  non vengano passati correttamente
+Replicare le possibilità del programma cui nel gui.

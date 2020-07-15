@@ -20,6 +20,7 @@ class Bottiglia:
 
     def stampaBottiglia(self):
         print("codice :" +self.Codice+ ", Nome:"+ self.Nome)
+        return("codice :" +self.Codice+ ", Nome:"+ self.Nome)
     
     def controlloCodice(self,cod):
         if cod == self.Codice:

@@ -1,18 +1,22 @@
 from tkinter import *
 from testclasse import restbottiglie
+result_row = []
+def visualizza():
+    diz = restbottiglie()
+    testo=""
+    for x in diz.values():
+        testo += x.stampaBottiglia()+"\n"
+    label = Label(root,text=testo,anchor="w")
+    label.grid(row=1,column=0)
 root = Tk()
-def bottone_click():
-    ob = restbottiglie()
-    print(str(ob[80220718].P_vendita))
-    testo = Label(root,text=ob[80220718].stampaBottiglia())
-    testo.grid(row=2,column=2)
-#Creo un widget
-label = Label(root,text="Ciao")
-nome = Label(root,text="Antonio")
-bottone = Button(root,text="Cliccami",padx=50,pady=10,command=bottone_click) #puo essere disabilitato con state=DISABLED
-#lo mostro sullo schermo (diversi modi)
-# label.pack(), label.grid
-label.grid(row=0,column=0)
-nome.grid(row=1,column=1)
-bottone.grid(row=2,column=0)
+
+root.title("Bottiglie")
+
+btn_visualizza = Button(root,text="Visualizza tutte le bottiglie",command=visualizza)
+#risultato = Entry(root,text="Test",width="50")
+
+
+btn_visualizza.grid(row=0,column=0)
+#risultato.grid(row=1,column=0)
+
 root.mainloop()
