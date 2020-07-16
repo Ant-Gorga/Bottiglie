@@ -25,3 +25,7 @@ Inserire il controllo dei dati come funzione della classe
 Tentare di fare un autocompletamento quando si inserisce il codice della Bottiglia (Ovvaiamente non per l' inserimento di cosi nuovi)
 
 Nome troncato a x caratteri (controllare nel dbs)
+
+Controllare che del Db non ci sia già il codice
+
+Sistemare il finestra.py, fare in modo che il testo Label si aggiorni senza andare a male
