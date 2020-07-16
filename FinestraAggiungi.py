@@ -2,11 +2,16 @@ from tkinter import *
 entries = {}
 def controllodati():
     return 0
+
 def btn_conferma_cliccato():
     global entries
+    tmplist = [] #lista per accogliere temporeaneamente i dati
     for x in entries.values():
-        print(x)
+        tmplist.append(x.get())
 
+    nBottiglia=Bottiglie(tmplist[0],tmplist[1],tmplist[2],tmplist[3],tmplist[4],tmplist[5])
+    if nBottiglia.controlloValori():
+        return 0    #accogliere la lista in maniera adeguata
 def lanciafinestra(root):
     global entries
     labels = []
