@@ -1,24 +1,30 @@
-#File per lavorare senza server,
-#Creazione della gui
 from tkinter import *
+#from testclasse import restbottiglie
+from FinestraAggiungi import lanciafinestra
+result_row = []
+def visualizza():
+    return 0
+def vendita():
+    return 0
+def deposito():
+    return 0
+def aggiungi():
+    lanciafinestra(root)
 root = Tk()
+root.geometry("500x500")
 root.title("Bottiglie")
-def bottone_click():
-    testo= Label(root,text="")
-    testo = Label(root,text=e.get())
-    testo.grid(row=3,column=3)
 
-#Creo un widget
-label = Label(root,text="Ciao")
-nome = Label(root,text="Antonio")
-bottone = Button(root,text="Cliccami",padx=50,pady=10,command=bottone_click) #puo essere disabilitato con state=DISABLED
-e = Entry(root) #height, width, bg, fg
-#e.get() # prende il testo
+btn_visualizza = Button(root,text="Visualizza tutte le bottiglie",command=visualizza)
+btn_vendita = Button(root,text="Registra una vendita",command=vendita)
+btn_deposito = Button(root,text="Registra un deposito",command=deposito)
+btn_aggiungi= Button(root,text="Aggiungi una Bottiglia",command=aggiungi)
+#risultato = Entry(root,text="Test",width="50")
 
-#lo mostro sullo schermo (diversi modi)
-# label.pack(), label.grid
-label.grid(row=0,column=0)
-nome.grid(row=1,column=1)
-bottone.grid(row=2,column=0)
-e.grid(row=2,column=2)
+
+btn_visualizza.grid(row=0,column=0)
+btn_vendita.grid(row=1,column=0)
+btn_deposito.grid(row=2,column=0)
+btn_aggiungi.grid(row=3,column=0)
+#risultato.grid(row=1,column=0)
+
 root.mainloop()

@@ -6,6 +6,7 @@ import platform
 import os
 import datetime as datetime
 from Var import *
+from Classe import Bottiglia
 if platform.platform() =="Windows":
     clear ="cls"
 else:
@@ -14,30 +15,7 @@ else:
 
 class Found(Exception): pass #Eccezione creata per uscire dal ciclo annidiato
 
-
-class Bottiglia:
-    "Classe che rappresenta la tabella bottiglie nel database"
-    righe = 0
-    
-    def __init__(self,Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto):
-        self.Codice = Codice
-        self.Nome = Nome
-        self.Qauantita = Quantita 
-        self.P_acqusito = P_acqusito
-        self.P_vendita= P_vendita
-        self.Data_Acquisto = D_acquisto
-        Bottiglia.righe +=1 
-
-    def stampaBottiglia(self):
-        print("codice :" +self.Codice+ ", Nome:"+ self.Nome+", Qta: "+str(self.Qauantita) +", Prezzo:"+str(self.P_vendita)+"€")
-
-
-
-
 os.system(clear)
-
-
-    
 
 def menu():
     print("COSA VUOI FARE?")
@@ -61,8 +39,8 @@ try:
         print(format(error))
 
     cursor.execute("SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acqusito from bottiglie order by P_Vendita")
-    
-    
+
+
     for Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto in cursor:
         Bottiglie[Codice]=Bottiglia(Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto)
     menu()
@@ -85,20 +63,20 @@ try:
         for codice, nome, quantita in cursor:
             print("NOME :{}, CODICE :{}, QTA: {}".format(codice,nome,quantita))
             Cod_quantita[codice]=quantita
-        
-        
-        
+
+
+
         while codice_in not in Bottiglie.keys():
             codice_in = input("inserisci il codice della bottiglia: . . . ")
         max_bottiglie = Bottiglie[codice_in].Qauantita
-        
+
         while True:
             try:
                 quantita = int(input("Numero bottiglie vendute (max :"+str(max_bottiglie)+"): "))
             except ValueError:
                 print("Errore, hai inserito un carattere non valido, inserisco 1 bottiglia")
                 quantita=1
-            
+
             if quantita <= max_bottiglie and quantita > 0:
                 break
         oggi = datetime.date.today()
@@ -126,8 +104,8 @@ try:
         except mariadb.Error as error:
             print(format(error))
             print("Errore nell'inserimento della riga, controlla i tipi di dato o il codice della bottiglia")
-            
-        
+
+
     elif scelta =="4":
         #quarto csaoù
         print("Non so se implementarlo o meno")

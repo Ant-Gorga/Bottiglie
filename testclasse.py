@@ -1,30 +1,10 @@
 from Var import *
 import mysql.connector as mariadb
+from Classe import Bottiglia
 mariadb_connection = mariadb.connect(user=utente,password=password,database=db,host=host)
 cursor = mariadb_connection.cursor()
 class Found(Exception): pass
 var= 0
-
-class Bottiglia:
-    "Classe che rappresenta la tabella bottiglie nel database"
-    righe = 0
-    
-    def __init__(self,Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto):
-        self.Codice = Codice
-        self.Nome = Nome
-        self.Qauantita = Quantita 
-        self.P_acqusito = P_acqusito
-        self.P_vendita= P_vendita
-        self.Data_Acquisto = D_acquisto
-        Bottiglia.righe +=1 
-
-    def stampaBottiglia(self):
-        print("codice :" +self.Codice+ ", Nome:"+ self.Nome)
-        return("codice :" +self.Codice+ ", Nome:"+ self.Nome)
-    
-    def controlloCodice(self,cod):
-        if cod == self.Codice:
-            return True
 
 cursor.execute("SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acqusito from bottiglie order by P_Vendita")
 
@@ -34,7 +14,7 @@ for Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto in cursor:
 
 for b in Bottiglie.values():
     b.stampaBottiglia()
-    
+
 def codice():
     try:
         while True:
