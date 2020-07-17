@@ -1,32 +1,39 @@
 from tkinter import *
 from Classe import Bottiglia
+from Var import Bottiglie
+
 entries = {}
-msg = Label(fin_inserimento)
 def controllodati():
     return 0
 
-def btn_conferma_cliccato(fin_inserimento):
+def btn_conferma_cliccato(fin_inserimento,):
     global entries
+    global Bottiglie
+
     tmplist = [] #lista per accogliere temporeaneamente i dati
     for x in entries.values():
         tmplist.append(x.get())
 
     nBottiglia=Bottiglia(tmplist[0],tmplist[1],tmplist[2],tmplist[3],tmplist[4],tmplist[5])
     print(nBottiglia.controlloValori())
-    global msg
-    msg.delete(0,END)
-    if not nBottiglia.controlloValori():
+
+    if not nBottiglia.controlloValori() and tmplist[0] not in Bottiglie.keys() :
         x=0
         #Non ci sono errori procedere all' Inserimento
-        msg = Label(fin_inserimento,"Non ci sono errori")
+
+        msg = Label(fin_inserimento,text="Non ci sono errori")
 
     else:
+        
+        if tmplist[0] in Bottiglie.keys():
+            entries["Codice"].delete(0,END)
         msg = Label(fin_inserimento,text="Ricontrolla i campi che si sono eliminati")
-
 
         for er in nBottiglia.controlloValori():
             entries[er].delete(0,END)
-    msg.grid(row=7,column=1,columnspan=2)
+
+    msg.grid(row=7,column=0,columnspan=2)
+
 def lanciafinestra(root):
     global entries
     labels = []
@@ -56,5 +63,5 @@ def lanciafinestra(root):
         en.grid(row=row,column=1)
         row+=1
 
-    btn_conferma.grid(row=row+1,column=1,columnspan=2)
+    btn_conferma.grid(row=row+1,column=0,columnspan=2)
     testo.grid(row=0,column=0,columnspan=2)

@@ -26,9 +26,11 @@ class Bottiglia:
             errorList.append("Codice")
 
         self.Nome=self.Nome[0:25]
-
-        if (int(self.Quantita)> 99 or int(self.Quantita)<1):
-            msgErrore+=" "+"Ricontrolla il numero di Bottiglie"
+        try:
+            if (int(self.Quantita)> 99 or int(self.Quantita)<1):
+                msgErrore+=" "+"Ricontrolla il numero di Bottiglie"
+                errorList.append("Quantita")
+        except ValueError:
             errorList.append("Quantita")
         try:
             float(self.P_acquisto)

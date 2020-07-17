@@ -26,6 +26,16 @@ Tentare di fare un autocompletamento quando si inserisce il codice della Bottigl
 
 Nome troncato a x caratteri (controllare nel dbs)
 
-Controllare che del Db non ci sia già il codice
+Controllare che del Db non ci sia già il codice <mark>Quando si inserisce una bottigliae </mark>
 
 Sistemare il finestra.py, fare in modo che il testo Label si aggiorni senza andare a male
+
+Testare il funzionamento della veirifica dei dati con i dati veri
+
+Cambiare i nomi delle var in inglese
+
+FINIRE IMPLEMENTAZIONE E RESTITUZIONE ERRORE IN MODO DA FARE
+
+`if not funzione(): Tutto ok
+
+`

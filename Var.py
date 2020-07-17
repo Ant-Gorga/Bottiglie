@@ -1,8 +1,8 @@
 #DEFINIZIONI VARIABILI#
-
-query1 ="""SELECT Cod_Bottiglia, nome, P_vendita, quantita 
-        from bottiglie 
-        order by P_Vendita
+import mysql.connector as mariadb
+select_all ="""SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acqusito
+            from bottiglie
+            order by P_Vendita
         """
 vendita=""" insert into vendite(Data_vendita,quantita,id_bottiglia)
            Values(%s,%s,%s);
@@ -19,3 +19,5 @@ host="192.168.1.100"
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}
+mariadb_connection = ""
+cursor = ""
