@@ -13,8 +13,9 @@ class Bottiglia:
 
 
     def stampaBottiglia(self):
+
         print("codice" +self.Codice+ ", Nome:"+ self.Nome+", Qta: "+str(self.Quantita) +", Prezzo:"+str(self.P_vendita)+"€")
-        return("codice :" +self.Codice+ ", Nome:"+ self.Nome)
+        return ("codice:" +self.Codice+ ", Nome:"+ self.Nome+", Qta: "+str(self.Quantita) +", Prezzo:"+str(self.P_vendita)+"€")
 
     def controlloValori(self):
         msgErrore ="Perfavore ricontrolla"

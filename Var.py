@@ -10,12 +10,16 @@ vendita=""" insert into vendite(Data_vendita,quantita,id_bottiglia)
 vendita_2="""
             update bottiglie set quantita=quantita-%s where Cod_Bottiglia =%s
         """
-inserimento="""updat bottiglie set quantita=quantita+%s where Cod_bottiglia=%s
+inserimento="""update bottiglie set quantita=quantita+%s where Cod_bottiglia=%s
         """
+        
+aggiunta="""insert into bottiglie
+            values(%s,%s,%s,%s,%s,%s)"""
+
 utente = "antonio"
 db="test_bottiglie"
 password="antonio"
-host="192.168.1.100"
+host="localhost"
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}

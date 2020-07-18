@@ -26,7 +26,7 @@ def menu():
 
 
 
-
+menu()
 try:
     scelta = input("Connettersi al database? S-N . . . ")
     if scelta == "n" or scelta == "N":
@@ -48,7 +48,7 @@ try:
     scelta = input("Scelta : ")
     if scelta == "1":
         try:
-            cursor.execute(query1)
+            cursor.execute(select_all)
         except mariadb.Error as error:
             print(format(error))
         for b in Bottiglie.values():
