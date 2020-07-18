@@ -12,10 +12,11 @@ vendita_2="""
         """
 inserimento="""update bottiglie set quantita=quantita+%s where Cod_bottiglia=%s
         """
-        
+
 aggiunta="""insert into bottiglie
             values(%s,%s,%s,%s,%s,%s)"""
-
+SQL_tipi=""" select * from tipi
+     """
 utente = "antonio"
 db="test_bottiglie"
 password="antonio"
@@ -23,5 +24,6 @@ host="localhost"
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}
+tipi={}
 mariadb_connection = ""
 cursor = ""

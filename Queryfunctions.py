@@ -23,3 +23,13 @@ def insertBottiglia(data):
         return 0
     except mariadb.Error as error:
         return error
+
+def getTipi():
+    global cursor,tipi
+    try:
+        cursor.execute(SQL_tipi)
+        for Id_tipo,Nome in cursor:
+            tipi[Id_tipo]=Nome
+        return 0
+    except mariadb.Error as error:
+        return error

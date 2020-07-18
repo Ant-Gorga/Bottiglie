@@ -1,6 +1,6 @@
 from tkinter import *
 from Classe import Bottiglia
-from Var import Bottiglie
+from Var import Bottiglie,tipi
 import Queryfunctions as Qf
 entries = {}
 
@@ -19,7 +19,7 @@ def btn_conferma_cliccato(fin_inserimento,):
         x=0
         #Non ci sono errori procedere all' Inserimento
         msg = Label(fin_inserimento,text="Non ci sono errori")
-        
+
         if Qf.insertBottiglia(tmplist)==0:
             msg = Label(fin_inserimento,text="Dati inseriti correttamente")
         else:
@@ -35,15 +35,21 @@ def btn_conferma_cliccato(fin_inserimento,):
 
     msg.grid(row=7,column=0,columnspan=2)
 
-def lanciafinestra(root):
-    global entries
-    labels = []
+def cliccato():
+    return 0
 
+def lanciafinestra(root):
+    global entries,tipi
+    labels = []
     row=1
     Campi = ["Codice","Nome","Quantita","P_acquisto","P_vendita","Data_Acqusito"]
     fin_inserimento = Toplevel(root)
     testo = Label(fin_inserimento,text="Inserisci i dati richiesti")
     btn_conferma= Button(fin_inserimento,text="inserisci",command=lambda:btn_conferma_cliccato(fin_inserimento))
+    print(Qf.getTipi().values())
+    print(tipi.values())
+    dropdown = OptionMenu(fin_inserimento,cliccato,tipi.values())
+
 
     fin_inserimento.title("Inserisci")
 
@@ -62,6 +68,6 @@ def lanciafinestra(root):
         en.grid(row=row,column=1)
         row+=1
 
-    btn_conferma.grid(row=row+1,column=0,columnspan=2)
-
+    btn_conferma.grid(row=row+2,column=0,columnspan=2)
+    dropdown.grid(row=row+1,column=0,columnspan=2)
     testo.grid(row=0,column=0,columnspan=2)
