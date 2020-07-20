@@ -1,12 +1,14 @@
 from tkinter import *
 from Classe import Bottiglia
-from Var import Bottiglie,tipi
+from Var import Bottiglie,tipi,get_key
 import Queryfunctions as Qf
 entries = {}
 
-def btn_conferma_cliccato(fin_inserimento,):
+def btn_conferma_cliccato(fin_inserimento,tipo):
     global entries
     global Bottiglie
+    global tipi
+    print("Cazzi"+str(get_key(tipi, tipo.get()))) # è possibile avere la chiave dal liquore
 
     tmplist = [] #lista per accogliere temporeaneamente i dati
     for x in entries.values():
@@ -45,10 +47,13 @@ def lanciafinestra(root):
     Campi = ["Codice","Nome","Quantita","P_acquisto","P_vendita","Data_Acqusito"]
     fin_inserimento = Toplevel(root)
     testo = Label(fin_inserimento,text="Inserisci i dati richiesti")
-    btn_conferma= Button(fin_inserimento,text="inserisci",command=lambda:btn_conferma_cliccato(fin_inserimento))
-    print(Qf.getTipi().values())
+    btn_conferma= Button(fin_inserimento,text="inserisci",command=lambda:btn_conferma_cliccato(fin_inserimento,tipo))
+    print(Qf.getTipi())
     print(tipi.values())
-    dropdown = OptionMenu(fin_inserimento,cliccato,tipi.values())
+    tipo = StringVar()
+    tipo.set(tipi[1])
+    dropdown = OptionMenu(fin_inserimento,tipo,*tipi.values()) #Il punto esclamativo serve
+                                                                  #per "spalmare" le variabili
 
 
     fin_inserimento.title("Inserisci")

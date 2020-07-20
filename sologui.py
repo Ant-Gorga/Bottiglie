@@ -11,7 +11,7 @@ def vendita():
 def deposito():
     return 0
 root = Tk()
-root.geometry("500x500")
+root.geometry("200x200")
 root.title("Bottiglie")
 
 Qf.conn()
