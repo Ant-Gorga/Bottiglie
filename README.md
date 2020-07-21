@@ -36,4 +36,4 @@ Cambiare i nomi delle var in inglese
 
 - [ ] Pubblico su github rendendo privati i dati di connessione
 
-- [ ] 
+- [ ] Inserire controllo per la connessione
