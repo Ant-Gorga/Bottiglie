@@ -18,7 +18,7 @@ def getBottiglie():
 def insertBottiglia(data,id_tipo,id_fornitore):
     global cursor
     try:
-        cursor.execute(aggiunta,(data[0],data[1],data[2],data[3],data[4],data[5],id_fornitore,id_tipo))
+        cursor.execute(aggiunta,(data.Codice,data.Nome,data.Quantita,data.P_acquisto,data.P_vendita,data.Data_Acquisto,id_fornitore,id_tipo))
         mariadb_connection.commit()
         return 0
     except mariadb.Error as error:

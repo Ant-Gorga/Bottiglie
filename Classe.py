@@ -35,8 +35,13 @@ class Bottiglia:
             errorList.append("Quantita")
         try:
             #Cambiare la virgola in punto
+            if "," in str(self.P_acquisto):
+                self.P_acquisto = str(self.P_acquisto).replace(",",".")
             float(self.P_acquisto)
+            if "," in str(self.P_vendita):
+                self.P_vendita = str(self.P_vendita).replace(",",".")
             float(self.P_vendita)
+            print(str(self.P_acquisto)+" "+str(self.P_vendita))
         except ValueError:
             msgErrore+=" "+"Ricontrolla i prezzi"
             errorList.append("P_acquisto")
