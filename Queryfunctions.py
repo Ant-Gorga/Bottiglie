@@ -33,3 +33,13 @@ def getTipi():
         return 0
     except mariadb.Error as error:
         return error
+
+def getFornitori():
+    global cursor,fornitori
+        try:
+            cursor.execute()
+            for Partita_IVA,Nome in cursor:
+                fornitori[Partita_IVA]=Nome
+            return 0
+        except mariadb.Error as error:
+            return error

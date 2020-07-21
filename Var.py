@@ -25,6 +25,7 @@ codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}
 tipi={}
+fornitori = {}
 mariadb_connection = ""
 cursor = ""
 

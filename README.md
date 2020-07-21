@@ -41,3 +41,7 @@ FINIRE IMPLEMENTAZIONE E RESTITUZIONE ERRORE IN MODO DA FARE
 `
 VEDERE COME FARE PER IL TIPO DI BOTTIGLIA
 VEDERE COME FARE PER IL FORNITORE
+
+<mark>Cambiare il nome della tabella fornitori nel codice</mark>
+
+Rendere pubblico il codice su github mettendo nel gitignore le var come username, password, ecc
