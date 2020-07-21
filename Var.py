@@ -14,9 +14,10 @@ inserimento="""update bottiglie set quantita=quantita+%s where Cod_bottiglia=%s
         """
 
 aggiunta="""insert into bottiglie
-            values(%s,%s,%s,%s,%s,%s)"""
+            values(%s,%s,%s,%s,%s,%s,%s,%s)"""
 SQL_tipi=""" select * from tipi
      """
+SQL_fornitori="""select Partita_IVA,Nome from foritori"""
 utente = "antonio"
 db="test_bottiglie"
 password="antonio"

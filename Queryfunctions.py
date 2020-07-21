@@ -15,11 +15,11 @@ def getBottiglie():
     for Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto in cursor:
         Bottiglie[Codice]=Bottiglia(Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto)
 
-def insertBottiglia(data):
+def insertBottiglia(data,id_tipo,id_fornitore):
     global cursor
     try:
-        cursor.execute(aggiunta,(data[0],data[1],data[2],data[3],data[4],data[5]))
-        cursor.commit()
+        cursor.execute(aggiunta,(data[0],data[1],data[2],data[3],data[4],data[5],id_fornitore,id_tipo))
+        mariadb_connection.commit()
         return 0
     except mariadb.Error as error:
         return error
@@ -36,10 +36,10 @@ def getTipi():
 
 def getFornitori():
     global cursor,fornitori
-        try:
-            cursor.execute()
-            for Partita_IVA,Nome in cursor:
-                fornitori[Partita_IVA]=Nome
-            return 0
-        except mariadb.Error as error:
-            return error
+    try:
+        cursor.execute(SQL_fornitori)
+        for Partita_IVA,Nome in cursor:
+            fornitori[Partita_IVA]=Nome
+        return 0
+    except mariadb.Error as error:
+        return error

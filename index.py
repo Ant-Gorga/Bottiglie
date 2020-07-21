@@ -100,7 +100,7 @@ try:
                 quantita=1
         try:
             cursor.execute(inserimento,(quantita,codice_in))
-            cursor.commit()
+            #cursor.commit()
         except mariadb.Error as error:
             print(format(error))
             print("Errore nell'inserimento della riga, controlla i tipi di dato o il codice della bottiglia")

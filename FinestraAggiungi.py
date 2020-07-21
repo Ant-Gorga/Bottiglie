@@ -1,10 +1,10 @@
 from tkinter import *
 from Classe import Bottiglia
-from Var import Bottiglie,tipi,get_key
+from Var import Bottiglie,tipi,get_key,fornitori
 import Queryfunctions as Qf
 entries = {}
 
-def btn_conferma_cliccato(fin_inserimento,tipo):
+def btn_conferma_cliccato(fin_inserimento,tipo,fornitore):
     global entries
     global Bottiglie
     global tipi
@@ -21,11 +21,12 @@ def btn_conferma_cliccato(fin_inserimento,tipo):
         x=0
         #Non ci sono errori procedere all' Inserimento
         msg = Label(fin_inserimento,text="Non ci sono errori")
-
-        if Qf.insertBottiglia(tmplist)==0:
+        id_tipo=get_key(tipi, tipo.get())
+        id_fornitore=get_key(fornitori, fornitore.get())
+        if Qf.insertBottiglia(tmplist,id_tipo,id_fornitore)==0: #passo alla funzione la chiave dell' elemento corrispondente
             msg = Label(fin_inserimento,text="Dati inseriti correttamente")
         else:
-            msg = Label(fin_inserimento,text=Qf.insertBottiglia(tmplist))
+            msg = Label(fin_inserimento,text=Qf.insertBottiglia(tmplist,id_tipo,id_fornitore))
     else:
 
         if tmplist[0] in Bottiglie.keys():
@@ -37,24 +38,26 @@ def btn_conferma_cliccato(fin_inserimento,tipo):
 
     msg.grid(row=7,column=0,columnspan=2)
 
-def cliccato():
-    return 0
 
 def lanciafinestra(root):
-    global entries,tipi
+    global entries,tipi,fornitori
     labels = []
     row=1
     Campi = ["Codice","Nome","Quantita","P_acquisto","P_vendita","Data_Acqusito"]
     fin_inserimento = Toplevel(root)
     testo = Label(fin_inserimento,text="Inserisci i dati richiesti")
-    btn_conferma= Button(fin_inserimento,text="inserisci",command=lambda:btn_conferma_cliccato(fin_inserimento,tipo))
-    print(Qf.getTipi())
-    print(tipi.values())
+    btn_conferma= Button(fin_inserimento,text="inserisci",command=lambda:btn_conferma_cliccato(fin_inserimento,tipo,fornitore))
+    print("Query Tipi:"+ str(Qf.getTipi()))
+    print("Query fornitori:"+str(Qf.getFornitori()))
     tipo = StringVar()
     tipo.set(tipi[1])
-    dropdown = OptionMenu(fin_inserimento,tipo,*tipi.values()) #Il punto esclamativo serve
-                                                                  #per "spalmare" le variabili
 
+    fornitore = StringVar()
+
+    dropdownTipi = OptionMenu(fin_inserimento,tipo,*tipi.values())
+    #Il punto esclamativo serve
+    #per "spalmare" le variabili
+    dropdownFornitori = OptionMenu(fin_inserimento,fornitore,*fornitori.values())
 
     fin_inserimento.title("Inserisci")
 
@@ -73,6 +76,7 @@ def lanciafinestra(root):
         en.grid(row=row,column=1)
         row+=1
 
-    btn_conferma.grid(row=row+2,column=0,columnspan=2)
-    dropdown.grid(row=row+1,column=0,columnspan=2)
+    btn_conferma.grid(row=row+3,column=0,columnspan=2)
+    dropdownTipi.grid(row=row+1,column=0,columnspan=2)
+    dropdownFornitori.grid(row=row+2,column=0,columnspan=2)
     testo.grid(row=0,column=0,columnspan=2)

@@ -34,6 +34,7 @@ class Bottiglia:
         except ValueError:
             errorList.append("Quantita")
         try:
+            #Cambiare la virgola in punto
             float(self.P_acquisto)
             float(self.P_vendita)
         except ValueError:
