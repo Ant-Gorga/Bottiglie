@@ -34,6 +34,8 @@ Cambiare i nomi delle var in inglese
 
 - [ ] Autocompletamento
 
-- [ ] Pubblico su github rendendo privati i dati di connessione
+- [x] Pubblico su github rendendo privati i dati di connessione
 
-- [ ] Inserire controllo per la connessione
+- [x] Inserire controllo per la connessione
+
+- [ ] Modifica singolo valore

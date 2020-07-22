@@ -5,9 +5,13 @@ def conn():
     global mariadb_connection,cursor
     try:
         mariadb_connection = mariadb.connect(user=utente,password=password,host=host,database=db)
-        cursor = mariadb_connection.cursor()
-    except mariadb.Error as error:
+    except  mariadb.Error as error:
         return error
+    if mariadb_connection.is_connected():
+        cursor = mariadb_connection.cursor()
+        return 0
+    else:
+        return "Errore di connessione"
 
 def getBottiglie():
     global cursor, Bottiglie
