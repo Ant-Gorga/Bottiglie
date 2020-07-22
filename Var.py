@@ -19,6 +19,13 @@ aggiunta="""insert into bottiglie
 SQL_tipi=""" select * from tipi
      """
 SQL_fornitori="""select Partita_IVA,Nome from foritori"""
+<<<<<<< HEAD
+=======
+utente = "antonio"
+db="test_bottiglie"
+password="antonio"
+host="192.168.1.106"
+>>>>>>> dada2cccb9db8ace0bcde723c81553587048714f
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}
