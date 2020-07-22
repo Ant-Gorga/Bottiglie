@@ -1,6 +1,6 @@
 #DEFINIZIONI VARIABILI#
 import mysql.connector as mariadb
-from credenziali import *
+from Credenziali import *
 select_all ="""SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acqusito
             from bottiglie
             order by P_Vendita
@@ -19,13 +19,6 @@ aggiunta="""insert into bottiglie
 SQL_tipi=""" select * from tipi
      """
 SQL_fornitori="""select Partita_IVA,Nome from foritori"""
-<<<<<<< HEAD
-=======
-utente = "antonio"
-db="test_bottiglie"
-password="antonio"
-host="192.168.1.106"
->>>>>>> dada2cccb9db8ace0bcde723c81553587048714f
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}
