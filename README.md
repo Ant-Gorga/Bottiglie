@@ -24,7 +24,7 @@ Cambiare i nomi delle var in inglese
 
 - [ ] Revisione finestra di visualizzazione
 
-- [ ] Finestra di deposito
+- [x] Finestra di deposito
 
 - [ ] Revisione finestra di deposito
 
@@ -32,10 +32,12 @@ Cambiare i nomi delle var in inglese
 
 - [ ] Revisione finestra di vendita
 
-- [ ] Autocompletamento
+- [x] Autocompletamento
 
 - [x] Pubblico su github rendendo privati i dati di connessione
 
 - [x] Inserire controllo per la connessione
 
 - [ ] Modifica singolo valore
+
+- [ ] scrivere la documentazione del codice
