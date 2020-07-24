@@ -9,7 +9,7 @@ select_all ="""SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data
 #           Values(%s,%s,%s);
 #        """
 SQL_vendita="""
-            update bottiglie set quantita=quantita-%s where Cod_Bottiglia =%s
+            update bottiglie set quantita=quantita-%s where Cod_bottiglia =%s
         """
 SQL_deposito="""
             update bottiglie set quantita=quantita+%s where Cod_Bottiglia=%s
