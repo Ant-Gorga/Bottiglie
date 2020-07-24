@@ -47,3 +47,11 @@ def getFornitori():
         return 0
     except mariadb.Error as error:
         return error
+def deposito(codice,num):
+    global cursor
+    try:
+        cursor.execute(SQL_deposito,(num,codice))
+        mariadb_connection.commit()
+        return 0
+    except mariadb.Error as error:
+        return error

@@ -13,13 +13,15 @@ def btn_conferma_cliccato(codice,num,testo_msg):
     else:
         try:
             if int(num.get()) < 99 and int(num.get()) > 0 :
-                testo_msg.set("Deposito Registrato")
-                #scrivere la modifica  nel database
+                if Qf.deposito(codice.get(),num.get()) == 0:
+                    testo_msg.set("Deposito Registrato")
+                else:
+                    testo_msg.set(Qf.deposito(codice.get(),num.get()))
         except ValueError:
             testo_msg.set("Il numero non è corretto")
 
 def lanciafinestra(root):
-    
+
 
     fin_deposito = Toplevel(root)
     fin_deposito.title("Deposito")

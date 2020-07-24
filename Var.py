@@ -5,11 +5,14 @@ select_all ="""SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data
             from bottiglie
             order by P_Vendita
         """
-vendita=""" insert into vendite(Data_vendita,quantita,id_bottiglia)
-           Values(%s,%s,%s);
-        """
-vendita_2="""
+#vendita=""" insert into vendite(Data_vendita,quantita,id_bottiglia)
+#           Values(%s,%s,%s);
+#        """
+SQL_vendita="""
             update bottiglie set quantita=quantita-%s where Cod_Bottiglia =%s
+        """
+SQL_deposito="""
+            update bottiglie set quantita=quantita+%s where Cod_Bottiglia=%s
         """
 inserimento="""update bottiglie set quantita=quantita+%s where Cod_bottiglia=%s
         """
