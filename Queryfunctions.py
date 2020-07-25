@@ -55,3 +55,11 @@ def deposito(codice,num):
         return 0
     except mariadb.Error as error:
         return error
+def vendita(codice,num):
+    global cursor
+    try:
+        cursor.execute(SQL_vendita,(num,codice))
+        mariadb_connection.commit()
+        return 0
+    except mariadb.Error as error:
+        return error

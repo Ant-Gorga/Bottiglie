@@ -12,11 +12,14 @@ def btn_conferma_cliccato(codice,num,testo_msg):
         testo_msg.set("Il codice non è correto")
     else:
         try:
-            if int(num.get()) < 99 and int(num.get()) > 0 :
-                if Qf.deposito(codice.get(),num.get()) == 0:    #Cambiare il controllo, che deve essere <= di n_bottiglia del codice
-                    testo_msg.set("Deposito Registrato")
+            if int(num.get()) > 0 and int(num.get()) <= Bottiglie[codice.get()].Quantita:
+                if Qf.vendita(codice.get(),num.get()) == 0:    #Cambiare il controllo, che deve essere <= di n_bottiglia del codice
+                    Qf.vendita(codice.get(),num.get())
+                    testo_msg.set("vendita Registrata")
                 else:
-                    testo_msg.set(Qf.deposito(codice.get(),num.get()))
+                    testo_msg.set(Qf.vendita(codice.get(),num.get()))
+            else:
+                testo_msg.set("Il numero inserito non è corretto")
         except ValueError:
             testo_msg.set("Il numero non è corretto")
 

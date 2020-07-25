@@ -14,7 +14,7 @@ SQL_vendita="""
 SQL_deposito="""
             update bottiglie set quantita=quantita+%s where Cod_Bottiglia=%s
         """
-inserimento="""update bottiglie set quantita=quantita+%s where Cod_bottiglia=%s
+SQL_vendita="""update bottiglie set quantita=quantita-%s where Cod_bottiglia=%s
         """
 
 aggiunta="""insert into bottiglie
