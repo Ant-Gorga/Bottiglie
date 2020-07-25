@@ -41,3 +41,7 @@ Cambiare i nomi delle var in inglese
 - [ ] Modifica singolo valore
 
 - [ ] scrivere la documentazione del codice
+
+- [ ] Implementare tasto invio come bind alla finestra
+
+- [ ] 
