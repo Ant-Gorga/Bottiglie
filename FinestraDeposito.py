@@ -13,10 +13,11 @@ def btn_conferma_cliccato(codice,num,testo_msg):
     else:
         try:
             if int(num.get()) < 99 and int(num.get()) > 0 :
-                if Qf.deposito(codice.get(),num.get()) == 0:
+                esito =Qf.deposito(codice.get(),num.get())
+                if  esito== 0:
                     testo_msg.set("Deposito Registrato")
                 else:
-                    testo_msg.set(Qf.deposito(codice.get(),num.get()))
+                    testo_msg.set(esito)
         except ValueError:
             testo_msg.set("Il numero non è corretto")
 

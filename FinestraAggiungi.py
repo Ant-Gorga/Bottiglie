@@ -23,10 +23,11 @@ def btn_conferma_cliccato(fin_inserimento,tipo,fornitore,testo_msg):
         id_tipo=get_key(tipi, tipo.get()) #grazie alla funzione get_key
         id_fornitore=get_key(fornitori, fornitore.get()) #prendo l' id
 
-        if Qf.insertBottiglia(nBottiglia,id_tipo,id_fornitore)==0: #passo alla funzione la chiave dell' elemento corrispondente
+        esito = Qf.insertBottiglia(nBottiglia,id_tipo,id_fornitore)  #passo alla funzione la chiave dell' elemento corrispondente
+        if esito==0:
             testo_msg.set("Dati inseriti correttamente")
         else:
-            testo_msg.set(Qf.insertBottiglia(nBottiglia,id_tipo,id_fornitore)) #Spiegarlo nel readme
+            testo_msg.set(esito) #Spiegarlo nel readme
     else:
 
         if tmplist[0] in Bottiglie.keys():

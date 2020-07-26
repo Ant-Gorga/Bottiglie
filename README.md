@@ -44,9 +44,4 @@ Cambiare i nomi delle var in inglese
 
 - [ ] Implementare tasto invio come bind alla finestra
 
-- [ ] 
-
-FIXARE BUG DOPPIA VENDITA
- trovato
- SE CHIAMO DUE VOLTE LA FUNZIONE è OVVIO CHE IL CODICE VIENE ESEGUITO DUE VOLTE, CAMBIARLO IN TUTTE LE FINESTRE
- 
+- [ ] Vedere la roba commentata in sologui e farla andare
