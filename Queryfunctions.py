@@ -47,7 +47,7 @@ def getFornitori():
         return 0
     except mariadb.Error as error:
         return error
-        
+
 def deposito(codice,num):
     global cursor
     try:
@@ -56,6 +56,7 @@ def deposito(codice,num):
         return 0
     except mariadb.Error as error:
         return error
+
 def vendita(codice,num):
     global cursor
     try:
@@ -69,7 +70,7 @@ def vendita(codice,num):
 def getCampi(tabella):
     global cursor,campi
     try:
-        cursor.execute(SQL_colonne,(tabella))
+        cursor.execute("SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='%s'",tabella)
         for column_name in cursor:
             campi.append(column_name)
         return 0

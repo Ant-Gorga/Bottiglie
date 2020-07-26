@@ -10,13 +10,13 @@ from AutocompletamentoClass import EntryAutocompletamento
 #WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='dbName'
 
 
-#SELECT column_name
-#FROM INFORMATION_SCHEMA.COLUMNS
-#WHERE TABLE_NAME='bottiglie';
+#SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='bottiglie';
+
+
 
 def lanciafinestra(root):
-    
-    Qf.getCampi("Bottiglie")#Eventualmente anche da var
+
+    Qf.getCampi("bottiglie")#Eventualmente anche da var
     fin_modifica = Toplevel(root)
     fin_modifica.title("Modifica un campo")
     campo = StringVar()

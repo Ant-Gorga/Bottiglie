@@ -5,9 +5,7 @@ select_all ="""SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data
             from bottiglie
             order by P_Vendita
         """
-#vendita=""" insert into vendite(Data_vendita,quantita,id_bottiglia)
-#           Values(%s,%s,%s);
-#        """
+
 SQL_vendita="""
             update bottiglie set quantita=quantita-%s where Cod_bottiglia =%s
         """
@@ -24,7 +22,7 @@ SQL_tipi=""" select * from tipi
 SQL_fornitori="""select Partita_IVA,Nome from foritori"""
 SQL_colonne=""" select column_name
                 from INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE.NAME='%s' """
+                WHERE TABLE.NAME=%s """
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}
