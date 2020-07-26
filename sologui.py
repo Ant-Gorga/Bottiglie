@@ -5,6 +5,7 @@ import FinestraVisualizza as Fv
 import FinestraDeposito as Fd
 import Queryfunctions as Qf
 import FinestraVendita as Fvn
+import FinestraModifica as Fm
 result_row = []
 def visualizza():
     return 0
@@ -26,14 +27,14 @@ btn_visualizza = Button(root,text="Visualizza tutte le bottiglie",command= lambd
 btn_vendita = Button(root,text="Registra una vendita",command=lambda : Fvn.lanciafinestra(root))
 btn_deposito = Button(root,text="Registra un deposito",command=lambda: Fd.lanciafinestra(root))
 btn_aggiungi= Button(root,text="Aggiungi una Bottiglia",command=lambda: Fa.lanciafinestra(root))
-#risultato = Entry(root,text="Test",width="50")
+btn_modifica = Button(root,text="Modifica un campo",command= lambda:Fm.lanciafinestra(root))
+
 
 
 btn_visualizza.grid(row=0,column=0)
 btn_vendita.grid(row=1,column=0)
 btn_deposito.grid(row=2,column=0)
 btn_aggiungi.grid(row=3,column=0)
-#risultato.grid(row=1,col
-
+btn_modifica.grid(row=4,column=0)
 
 root.mainloop()

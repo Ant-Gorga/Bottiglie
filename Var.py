@@ -22,11 +22,15 @@ aggiunta="""insert into bottiglie
 SQL_tipi=""" select * from tipi
      """
 SQL_fornitori="""select Partita_IVA,Nome from foritori"""
+SQL_colonne=""" select column_name
+                from INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE.NAME='%s' """
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}
 tipi={}
 fornitori = {}
+campi=[]
 mariadb_connection = ""
 cursor = ""
 

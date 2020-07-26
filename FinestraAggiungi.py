@@ -58,7 +58,7 @@ def lanciafinestra(root):
     Qf.getTipi()
     #print("Query fornitori:"+str(Qf.getFornitori()))
     #print("Query Tipi:"+ str(Qf.getTipi()))
-    dropdownTipi = OptionMenu(fin_inserimento,tipo,*tipi.values())
+    dropdownTipi = OptionMenu(fin_inserimento,tipo,tipi.values())
     dropdownFornitori = OptionMenu(fin_inserimento,fornitore,*fornitori.values())
     #Il punto esclamativo serve
     #per "spalmare" le variabili

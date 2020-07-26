@@ -47,6 +47,7 @@ def getFornitori():
         return 0
     except mariadb.Error as error:
         return error
+        
 def deposito(codice,num):
     global cursor
     try:
@@ -60,6 +61,17 @@ def vendita(codice,num):
     try:
         cursor.execute(SQL_vendita,(num,codice))
         mariadb_connection.commit()
+        return 0
+    except mariadb.Error as error:
+        return error
+
+
+def getCampi(tabella):
+    global cursor,campi
+    try:
+        cursor.execute(SQL_colonne,(tabella))
+        for column_name in cursor:
+            campi.append(column_name)
         return 0
     except mariadb.Error as error:
         return error
