@@ -73,7 +73,7 @@ def getCampi(tabella):
         cursor.execute(SQL_colonne,(tabella))
         for column_name in cursor:
             campi.append(column_name)
-        campi.pop(0)
+        campi.pop(0) #toglie la chiave primaria
         return 0
     except mariadb.Error as error:
         return error
