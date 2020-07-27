@@ -23,7 +23,6 @@ def keypressed(event,code):
 root = Tk()
 #root.geometry("500x500")
 root.title("Bottiglie")
-
 if Qf.conn():
     errorbox = Label(root,text=Qf.conn())
     errorbox.grid(row=5,column=0)

@@ -15,8 +15,8 @@ from AutocompletamentoClass import EntryAutocompletamento
 
 
 def lanciafinestra(root):
-
-    Qf.getCampi("bottiglie")#Eventualmente anche da var
+    b = "bottiglie"
+    Qf.getCampi(b)#Eventualmente anche da var
     fin_modifica = Toplevel(root)
     fin_modifica.title("Modifica un campo")
     campo = StringVar()

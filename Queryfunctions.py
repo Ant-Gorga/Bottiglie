@@ -70,9 +70,10 @@ def vendita(codice,num):
 def getCampi(tabella):
     global cursor,campi
     try:
-        cursor.execute("SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='%s'",tabella)
+        cursor.execute(SQL_colonne,(tabella))
         for column_name in cursor:
             campi.append(column_name)
+        campi.pop(0)
         return 0
     except mariadb.Error as error:
         return error
