@@ -24,8 +24,8 @@ def lanciafinestra(root):
     codice = EntryAutocompletamento(fin_modifica)
     n_Bottiglia = Label(fin_modifica,textvariable=codice.n_Bottiglia_text)
     campotext = Label(fin_modifica,text="Scegli il campo da modificare")
-    
-    
+
+
     campiMenu = OptionMenu(fin_modifica,campo,*campi)
 
     codice.grid(row=0,column=0)

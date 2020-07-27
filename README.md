@@ -44,4 +44,4 @@ Cambiare i nomi delle var in inglese
 
 - [ ] Implementare tasto invio come bind alla finestra
 
-- [ ] Vedere la roba commentata in sologui e farla andare
+- [ ] Fare il bind di tutti i bottoni :)

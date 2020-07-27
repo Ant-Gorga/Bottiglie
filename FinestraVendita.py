@@ -13,7 +13,7 @@ def btn_conferma_cliccato(codice,num,testo_msg):
     else:
         try:
             if int(num.get()) > 0 and int(num.get()) <= Bottiglie[codice.get()].Quantita:
-                esito = Qf.vendita(codice.get(),num.get()) 
+                esito = Qf.vendita(codice.get(),num.get())
                 if  esito == 0:    #Cambiare il controllo, che deve essere <= di n_bottiglia del codice
                     testo_msg.set("vendita Registrata")
                 else:
@@ -37,7 +37,7 @@ def lanciafinestra(root):
     num = Entry(fin_vendita)
     msg = Label(fin_vendita,textvariable=testo_msg)
     btn_conferma = Button(fin_vendita,text="Conferma",command=lambda:btn_conferma_cliccato(codice,num,testo_msg))
-
+    
     codice.bind('<KeyRelease>',codice.tastolasciato)
 
     text1.grid(row=0,column=0)
