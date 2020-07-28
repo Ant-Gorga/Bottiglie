@@ -67,13 +67,22 @@ def vendita(codice,num):
         return error
 
 
-def getCampi(tabella):
+def getCampi():
     global cursor,campi
     try:
-        cursor.execute(SQL_colonne,(tabella))
+        cursor.execute(SQL_colonne) #bug
         for column_name in cursor:
             campi.append(column_name)
         campi.pop(0) #toglie la chiave primaria
         return 0
+    except mariadb.Error as error:
+        return error
+def getcampo(campo,cod):
+    global cursor,fornitori
+    try:
+        cursor.execute(SQL_get_campo,(campo,cod))
+        for x in cursor:
+            value = x
+        return value
     except mariadb.Error as error:
         return error

@@ -37,8 +37,6 @@ btn_modifica = Button(root,text="Modifica un campo",command= lambda:Fm.lanciafin
 
 btn_visualizza.bind("<Key>",lambda event, code="Fv" :keypressed (event,code))
 btn_vendita.bind("<Key>",lambda event, code="Fvn" :keypressed (event,code))
-btn_deposito.bind("<Key>",lambda event, code="Fd" :keypressed (event,code))
-btn_aggiungi.bind("<Key>",lambda event, code="Fa" :keypressed (event,code))
 btn_modifica.bind("<Key>",lambda event, code="Fm" :keypressed (event,code))
 # replicarlo per gli altri
 btn_visualizza.grid(row=0,column=0)

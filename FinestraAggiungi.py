@@ -63,7 +63,7 @@ def lanciafinestra(root):
     dropdownFornitori = OptionMenu(fin_inserimento,fornitore,*fornitori.values())
     #Il punto esclamativo serve
     #per "spalmare" le variabili
-    testo_msg.set(". . .")
+    testo_msg.set("Inserisci la data nel formato YYYYMMDD")
     tipo.set(tipi[1])
     keys = fornitori.keys()
     print(keys)
