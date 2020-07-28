@@ -1,15 +1,16 @@
 from tkinter import *
 from Var import Bottiglie
+
 class EntryAutocompletamento(Entry):
-    """docstring for EntryAutocompletamento."""
+    """Classe ereditaria per permettere l' autocompletamento ad Entry."""
 
     def __init__(self,scope):
         self.testo = StringVar()
         self.n_Bottiglia_text = StringVar()
         self.autocompletato= BooleanVar()
-        super().__init__(scope,textvariable=self.testo)
         self.autocompletato.set(False)
         self.codici = list(Bottiglie.keys())
+        super().__init__(scope,textvariable=self.testo)
 
     def confronta_stringa(self):
         tasti = []

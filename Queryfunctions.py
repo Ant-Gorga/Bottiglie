@@ -72,17 +72,22 @@ def getCampi():
     try:
         cursor.execute(SQL_colonne) #bug
         for column_name in cursor:
-            campi.append(column_name)
+            campi.append(list(column_name))
         campi.pop(0) #toglie la chiave primaria
+        for x in campi:
+            x[0]= x[0].replace("'","")
+        print(campi)
         return 0
     except mariadb.Error as error:
         return error
-def getcampo(campo,cod):
-    global cursor,fornitori
+
+def getcampo(campo ,cod):
     try:
-        cursor.execute(SQL_get_campo,(campo,cod))
-        for x in cursor:
-            value = x
+        SQL_gut_campo= """Select """ +campo+ """ from bottiglie where cod_bottiglia={}""".format(cod)
+        cursor.execute(str(SQL_gut_campo),(cod))
+        for campo in cursor:
+            value = campo
+        print(cursor.statement)
         return value
     except mariadb.Error as error:
         return error

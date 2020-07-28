@@ -24,8 +24,6 @@ def btn_conferma_cliccato(codice,num,testo_msg):
             testo_msg.set("Il numero non è corretto")
 
 def lanciafinestra(root):
-
-
     fin_vendita = Toplevel(root)
     fin_vendita.title("Vendita")
     testo_msg = StringVar()
@@ -37,7 +35,7 @@ def lanciafinestra(root):
     num = Entry(fin_vendita)
     msg = Label(fin_vendita,textvariable=testo_msg)
     btn_conferma = Button(fin_vendita,text="Conferma",command=lambda:btn_conferma_cliccato(codice,num,testo_msg))
-    
+
     codice.bind('<KeyRelease>',codice.tastolasciato)
 
     text1.grid(row=0,column=0)

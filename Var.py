@@ -24,9 +24,10 @@ SQL_fornitori="""select Partita_IVA,Nome from foritori"""
 
 SQL_colonne=""" SELECT COLUMN_NAME
                 FROM INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_NAME='bottiglie' """ #bug
+                WHERE TABLE_NAME=bottiglie""" #bug
 
 SQL_get_campo=""" SELECT %s from bottiglie where Cod_bottiglia=%s"""
+
 codice_in = ""
 Bottiglie = {}
 Cod_quantita = {}

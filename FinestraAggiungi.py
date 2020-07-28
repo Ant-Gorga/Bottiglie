@@ -3,11 +3,13 @@ from Classe import Bottiglia
 from Var import Bottiglie,tipi,get_key,fornitori
 import Queryfunctions as Qf
 
+#Variabili Globali
 entries = {}
 msg = ""
 
 def btn_conferma_cliccato(fin_inserimento,tipo,fornitore,testo_msg):
     global entries, Bottiglie, tipi
+
     tmplist = [] #lista per accogliere temporeaneamente i dati del fonrm
 
     for x in entries.values():
@@ -41,22 +43,21 @@ def lanciafinestra(root):
     global entries,tipi,fornitori,msg
 
     fin_inserimento = Toplevel(root)
-
     labels = []
-
     row=1
-
     testo_msg = StringVar()
-
+    tipo = StringVar()
+    fornitore = StringVar()
     Campi = ["Codice","Nome","Quantita","P_acquisto","P_vendita","Data_Acqusito"]
+
 
     testo = Label(fin_inserimento,text="Inserisci i dati richiesti")
     btn_conferma= Button(fin_inserimento,text="inserisci",command=lambda:btn_conferma_cliccato(fin_inserimento,tipo,fornitore,testo_msg))
     msg = Label(fin_inserimento,textvariable=testo_msg)
-    tipo = StringVar()
-    fornitore = StringVar()
     Qf.getFornitori()
     Qf.getTipi()
+    print(tipi)
+    print(fornitori)
     #print("Query fornitori:"+str(Qf.getFornitori()))
     #print("Query Tipi:"+ str(Qf.getTipi()))
     dropdownTipi = OptionMenu(fin_inserimento,tipo,tipi.values())
@@ -65,6 +66,7 @@ def lanciafinestra(root):
     #per "spalmare" le variabili
     testo_msg.set("Inserisci la data nel formato YYYYMMDD")
     tipo.set(tipi[1])
+
     keys = fornitori.keys()
     print(keys)
     fornitore.set(fornitori[list(keys)[0]]) #Da spiegare nel readme
