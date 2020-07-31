@@ -84,7 +84,7 @@ def getCampi():
 def getcampo(campo ,cod):
     try:
         SQL_gut_campo= """Select """ +campo+ """ from bottiglie where cod_bottiglia={}""".format(cod)
-        cursor.execute(str(SQL_gut_campo),(cod))
+        cursor.execute(str(SQL_gut_campo))
         for campo in cursor:
             value = campo
         print(cursor.statement)

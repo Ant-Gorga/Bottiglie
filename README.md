@@ -28,7 +28,7 @@ Cambiare i nomi delle var in inglese
 
 - [ ] Revisione finestra di deposito
 
-- [ ] Finestra di vendita
+- [x] Finestra di vendita
 
 - [ ] Revisione finestra di vendita
 
@@ -42,6 +42,6 @@ Cambiare i nomi delle var in inglese
 
 - [ ] scrivere la documentazione del codice
 
-- [ ] Implementare tasto invio come bind alla finestra
+- [x] Implementare tasto invio come bind alla finestra
 
-- [ ] Fare il bind di tutti i bottoni :)
+- [x] Fare il bind di tutti i bottoni :)

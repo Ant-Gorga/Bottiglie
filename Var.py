@@ -24,7 +24,7 @@ SQL_fornitori="""select Partita_IVA,Nome from foritori"""
 
 SQL_colonne=""" SELECT COLUMN_NAME
                 FROM INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_NAME=bottiglie""" #bug
+                WHERE TABLE_NAME=bottiglie""" #bug, non mi prende la sostituzione della var
 
 SQL_get_campo=""" SELECT %s from bottiglie where Cod_bottiglia=%s"""
 

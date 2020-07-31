@@ -46,5 +46,6 @@ class Bottiglia:
             msgErrore+=" "+"Ricontrolla i prezzi"
             errorList.append("P_acquisto")
             errorList.append("P_vendita")
-        #Parse datetime non so se metterlo
+
+        # si devoParse datetime non so se metterlo
         return errorList

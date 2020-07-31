@@ -1,12 +1,11 @@
 from tkinter import *
-#from testclasse import restbottiglie
 import FinestraAggiungi as Fa
 import FinestraVisualizza as Fv
 import FinestraDeposito as Fd
 import Queryfunctions as Qf
 import FinestraVendita as Fvn
 import FinestraModifica as Fm
-
+from Var import mariadb_connection,cursor
 def keypressed(event,code):
     if event.char == '\r': #Con il keycode non è multiipllatform
         if code == "Fv":
@@ -37,6 +36,8 @@ btn_modifica = Button(root,text="Modifica un campo",command= lambda:Fm.lanciafin
 
 btn_visualizza.bind("<Key>",lambda event, code="Fv" :keypressed (event,code))
 btn_vendita.bind("<Key>",lambda event, code="Fvn" :keypressed (event,code))
+btn_deposito.bind("<Key>", lambda event,code="Fd": keypressed(event,code))
+btn_aggiungi.bind("<Key>", lambda event,code ="Fa": keypressed(event,code))
 btn_modifica.bind("<Key>",lambda event, code="Fm" :keypressed (event,code))
 # replicarlo per gli altri
 btn_visualizza.grid(row=0,column=0)
@@ -45,4 +46,10 @@ btn_deposito.grid(row=2,column=0)
 btn_aggiungi.grid(row=3,column=0)
 btn_modifica.grid(row=4,column=0)
 
-root.mainloop()
+
+try:
+    root.mainloop()
+finally:
+    global mariadb_connection
+    #Controllare perchè non se lo prende
+    mariadb_connection.close()
