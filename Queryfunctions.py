@@ -1,5 +1,6 @@
 from Var import *
 from Classe import Bottiglia
+from Credenziali import *
 
 
 def conn():
@@ -26,8 +27,8 @@ def insertBottiglia(data, id_tipo, id_fornitore):
     global cursor
     try:
         cursor.execute(aggiunta, (
-        data.Codice, data.Nome, data.Quantita, data.P_acquisto, data.P_vendita, data.Data_Acquisto, id_fornitore,
-        id_tipo))
+            data.Codice, data.Nome, data.Quantita, data.P_acquisto, data.P_vendita, data.Data_Acquisto, id_fornitore,
+            id_tipo))
         mariadb_connection.commit()
         return 0
     except mariadb.Error as error:
@@ -105,10 +106,9 @@ def getcampo(campo, cod):
 
 def modifcacampo(cod, cmp, new_value):
     try:
-        tmp_SQL=SQL_modifica_campo.replace("#", cmp)
+        tmp_SQL = SQL_modifica_campo.replace("#", cmp)
         cursor.execute(tmp_SQL, (new_value, cod))
         mariadb_connection.commit()
         return 0
     except mariadb.Error as Error:
         return Error
-

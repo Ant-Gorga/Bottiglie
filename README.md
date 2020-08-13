@@ -1,47 +1,23 @@
-# Bottiglie
+##### 
 
-<mark>Programma python gestione bottiglie</mark>
+# Gestire un Piccolo database di bottigie con python3.8 e tkinter
 
-**TODO:**
+---
 
-Parte DML e parte QL separate
+Avendo studiato i database da poco ho deciso di provare ad integrarli con python e ad usare per la prima volta tkinter per l' interfaccia grafica.
 
-Aggiornare il collegamento al database sostituendolo con
+Per funzionare necessita del file `Credenziali.py` avente la seguente struttura:
+
+```python
+utente = "..."
+db="..."
+password="..."
+host="..."
 
 ```
-mariadb_connection = mariadb.connect(user=utente,password=password,database=db,host=host)
-```
 
-Cambiare i nomi delle var in inglese
+Il programma è abbastanza semplice ma mi è stato utile per cominciare a capire il funzionamento della gui, che con tkinter è stata semplice da gestire.
 
-<mark>Cambiare il nome della tabella fornitori nel codice</mark>
+Tutto inizia dall' index, che definisce la struttura della pagina principale e starta la gui con la chiamata alla funzione  `mainloop()`
 
-- [x] Finestra di inserimento
-
-- [ ] Revisione finestra di inserimento
-
-- [x] Finestra di visualizzazione
-
-- [ ] Revisione finestra di visualizzazione
-
-- [x] Finestra di deposito
-
-- [ ] Revisione finestra di deposito
-
-- [x] Finestra di vendita
-
-- [ ] Revisione finestra di vendita
-
-- [x] Autocompletamento
-
-- [x] Pubblico su github rendendo privati i dati di connessione
-
-- [x] Inserire controllo per la connessione
-
-- [ ] Modifica singolo valore
-
-- [ ] scrivere la documentazione del codice
-
-- [x] Implementare tasto invio come bind alla finestra
-
-- [x] Fare il bind di tutti i bottoni :)
+Qui viene mostrato il menù principale, si avvia la connessione e tramite i pulsanti si raggiunge la funzione desiderata.

@@ -1,116 +1,59 @@
-# Quando si inserisce si deve fare il commit
-#Quando si legge non è necessario
+from tkinter import *
+import FinestraAggiungi as Fa
+import FinestraVisualizza as Fv
+import FinestraDeposito as Fd
+import Queryfunctions as Qf
+import FinestraVendita as Fvn
+import FinestraModifica as Fm
+from Var import mariadb_connection, cursor
 
-import mysql.connector as mariadb
-import platform
-import os
-import datetime as datetime
-from Var import *
-from Classe import Bottiglia
-if platform.platform() =="Windows":
-    clear ="cls"
+
+def keypressed_func(event, code):
+    if event.char == '\r':  # Con il keycode non è multiipllatform
+        if code == "Fv":
+            Fv.lanciafinestra(root)
+        elif code == "Fvn":
+            Fvn.lanciafinestra(root)
+        elif code == "Fd":
+            Fd.lanciafinestra(root)
+        elif code == "Fa":
+            Fa.lanciafinestra(root)
+        elif code == "Fm":
+            Fm.lanciafinestra(root)
+
+
+root = Tk()
+# root.geometry("500x500")
+root.title("Bottiglie")
+if Qf.conn():
+    errorbox = Label(root, text=Qf.conn(), fg="red")
+    errorbox.grid(row=5, column=0)
 else:
-    print("siamo su un altro sistema")
-    clear = "clear"
+    confirmbox = Label(root,text="Connessione Avvenuta!", fg="green")
+    confirmbox.grid(row=5,column=0)
+    Qf.getBottiglie()
 
-class Found(Exception): pass #Eccezione creata per uscire dal ciclo annidiato
+btn_visualizza = Button(root, text="Visualizza tutte le bottiglie", command=lambda: Fv.lanciafinestra(root))
+btn_vendita = Button(root, text="Registra una vendita", command=lambda: Fvn.lanciafinestra(root))
+btn_deposito = Button(root, text="Registra un deposito", command=lambda: Fd.lanciafinestra(root))
+btn_aggiungi = Button(root, text="Aggiungi una Bottiglia", command=lambda: Fa.lanciafinestra(root))
+btn_modifica = Button(root, text="Modifica un campo", command=lambda: Fm.lanciafinestra(root))
 
-os.system(clear)
+btn_visualizza.bind("<Key>", lambda event, code="Fv": keypressed_func(event, code))
+btn_vendita.bind("<Key>", lambda event, code="Fvn": keypressed_func(event, code))
+btn_deposito.bind("<Key>", lambda event, code="Fd": keypressed_func(event, code))
+btn_aggiungi.bind("<Key>", lambda event, code="Fa": keypressed_func(event, code))
+btn_modifica.bind("<Key>", lambda event, code="Fm": keypressed_func(event, code))
+# replicarlo per gli altri
+btn_visualizza.grid(row=0, column=0)
+btn_vendita.grid(row=1, column=0)
+btn_deposito.grid(row=2, column=0)
+btn_aggiungi.grid(row=3, column=0)
+btn_modifica.grid(row=4, column=0)
 
-def menu():
-    print("COSA VUOI FARE?")
-    print("1)Vedi tutte le bottiglie")
-    print("2)Registra una vendita")
-    print("3)Registra un deposito")
-    print("4)Aggiungi una nuova bottiglia")
-
-
-
-menu()
 try:
-    scelta = input("Connettersi al database? S-N . . . ")
-    if scelta == "n" or scelta == "N":
-        print("esco dal programma . . .")
-        exit()
-    try:
-        mariadb_connection = mariadb.connect(user=utente,password=password,host=host,database=db)
-        cursor = mariadb_connection.cursor()
-    except NameError as error:
-        print(format(error))
-
-    cursor.execute("SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acqusito from bottiglie order by P_Vendita")
-
-
-    for Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto in cursor:
-        Bottiglie[Codice]=Bottiglia(Codice,Nome,Quantita,P_acqusito,P_vendita,D_acquisto)
-    menu()
-
-    scelta = input("Scelta : ")
-    if scelta == "1":
-        try:
-            cursor.execute(select_all)
-        except mariadb.Error as error:
-            print(format(error))
-        for b in Bottiglie.values():
-            b.stampaBottiglia()
-
-    elif scelta == "2":
-        #semicompleto controllare e sistemare il codice :)
-        print("Inserisci I seguenti Dati:")
-
-        print("Lista Bottiglie disponibili alla vendita ...")
-        cursor.execute("Select Cod_bottiglia, nome, quantita from bottiglie where quantita <> 0")
-        for codice, nome, quantita in cursor:
-            print("NOME :{}, CODICE :{}, QTA: {}".format(codice,nome,quantita))
-            Cod_quantita[codice]=quantita
-
-
-
-        while codice_in not in Bottiglie.keys():
-            codice_in = input("inserisci il codice della bottiglia: . . . ")
-        max_bottiglie = Bottiglie[codice_in].Qauantita
-
-        while True:
-            try:
-                quantita = int(input("Numero bottiglie vendute (max :"+str(max_bottiglie)+"): "))
-            except ValueError:
-                print("Errore, hai inserito un carattere non valido, inserisco 1 bottiglia")
-                quantita=1
-
-            if quantita <= max_bottiglie and quantita > 0:
-                break
-        oggi = datetime.date.today()
-        data = oggi.strftime("%Y%m%d") #Formattazione data come piace a mysql
-        try:
-            cursor.execute(vendita,(data,quantita,codice_in))
-            cursor.execute(vendita_2,(quantita,codice_in))
-            mariadb_connection.commit()
-            print("Inserimento avvenuto con successo!")
-        except mariadb.Error as error:
-            print(format(error))
-            print("Errore nell'inserimento della riga, controlla i tipi di dato o il codice della bottiglia")
-
-    elif scelta=="3":
-        while codice_in not in Bottiglie.keys():
-            codice_in = input("inserisci il codice della bottiglia: . . . ")
-            try:
-                quantita = int(input("Numero delle bottiglie da inserire:..."))
-            except ValueError:
-                print("Errore, hai inserito un carattere non valido, inserisco 1 bottiglia")
-                quantita=1
-        try:
-            cursor.execute(inserimento,(quantita,codice_in))
-            #cursor.commit()
-        except mariadb.Error as error:
-            print(format(error))
-            print("Errore nell'inserimento della riga, controlla i tipi di dato o il codice della bottiglia")
-
-
-    elif scelta =="4":
-        #quarto csaoù
-        print("Non so se implementarlo o meno")
-    mariadb_connection.close()
-
-except KeyboardInterrupt:
-    print("Programma terminato. . . .")
+    root.mainloop()
+finally:
+    global mariadb_connection
+    # Controllare perchè non se lo prende
     mariadb_connection.close()

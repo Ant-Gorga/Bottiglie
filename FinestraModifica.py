@@ -31,7 +31,7 @@ def Optionmenuselezionato(event):
         old_value_text.set("Valore: " + str(tmp_campo[0]))
 
 
-def btn_conferma_cliccato(new_value):
+def btn_conferma_cliccato(new_value,strvar):
     cmp = campo.get()
     try:
         if cmp == "Nome":
@@ -64,10 +64,11 @@ def btn_conferma_cliccato(new_value):
                 raise Errore
         print(Qf.modifcacampo(codice.get(), cmp, new_value))
         Qf.getBottiglie()
-        print("IO ci arrivo qua, ma poi boh")
+        strvar.set("Modifica Avvenuta con Successo")
+
 
     except Errore:
-        print("Errore inaspettato")
+        strvar.set("Errore Inaspettato")
         #Riportare un errore
 
     # un elif con il campo.get come stringa
@@ -87,7 +88,6 @@ def varcambiata(var, index, mode, my_var, campo):
             old_value_text.set("Valore: " + str(tmp_campo[0]))
 
 
-# Va ma anche no
 
 
 def lanciafinestra(root):
@@ -97,16 +97,18 @@ def lanciafinestra(root):
     fin_modifica.title("Modifica un campo")
     old_value_text = StringVar()
     campo = StringVar()
+    esito_text=StringVar()
     campo.set(Campi[0])
     old_value_text.set(" . . . ")
-
+    esito_text.set(". . .")
+    esito = Label(fin_modifica,textvariable=esito_text)
     codicetext = Label(fin_modifica, text="Inserisci il codice della bottiglia")
     codice = EntryAutocompletamento(fin_modifica)
     campotext = Label(fin_modifica, text="Scegli il campo da modificare")
     old_value = Label(fin_modifica, textvariable=old_value_text)
     new_value = Entry(fin_modifica)
     btn_conferma = Button(fin_modifica, text="Conferma la modifica",
-                          command=lambda: btn_conferma_cliccato(new_value.get()))
+                          command=lambda: btn_conferma_cliccato(new_value.get(),strvar))
 
     codice.bind("<KeyRelease>", codice.tastolasciato)
     codice.autocompletato.trace("w",
@@ -121,3 +123,4 @@ def lanciafinestra(root):
     old_value.grid(row=5, column=0)
     new_value.grid(row=6, column=0)
     btn_conferma.grid(row=7, column=0)
+    esito.grid(row=8, column=0)

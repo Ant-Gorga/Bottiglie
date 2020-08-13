@@ -1,8 +1,7 @@
 # DEFINIZIONI VARIABILI#
 import mysql.connector as mariadb
-from Credenziali import *
 
-select_all = """SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acqusito
+select_all = """SELECT Cod_Bottiglia, nome, quantita ,P_acquisto, P_vendita, Data_Acquisito
             from bottiglie
             order by P_Vendita
         """
@@ -18,7 +17,7 @@ aggiunta = """insert into bottiglie
             values(%s,%s,%s,%s,%s,%s,%s,%s)"""
 SQL_tipi = """ select * from tipi
      """
-SQL_fornitori = """select Partita_IVA,Nome from foritori"""
+SQL_fornitori = """select Partita_IVA,Nome from fornitori"""
 
 SQL_colonne = """ SELECT COLUMN_NAME
                 FROM INFORMATION_SCHEMA.COLUMNS
