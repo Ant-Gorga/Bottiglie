@@ -80,7 +80,11 @@ def vendita(codice, num):
 def getCampi():
     global cursor, campi
     try:
+<<<<<<< Updated upstream
         cursor.execute(SQL_colonne)  # bug
+=======
+        cursor.execute(SQL_colonne,(tabella,))
+>>>>>>> Stashed changes
         for column_name in cursor:
             campi.append(list(column_name))
         campi.pop(0)  # toglie la chiave primaria
